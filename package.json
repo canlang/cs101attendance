@@ -7,7 +7,6 @@
     "node": "7.8.0"
   },
   "dependencies": {
-    "babel-core": "^6.24.0",
     "babel-standalone": "^6.23.1",
     "express": "^4.15.2",
     "material-ui": "^0.17.0",
@@ -19,8 +18,7 @@
     "react-tap-event-plugin": "^2.0.1",
     "redis": "^2.7.1",
     "redux": "^3.6.0",
-    "socket.io": "^1.7.3",
-    "webpack": "^2.2.1"
+    "socket.io": "^1.7.3"
   },
   "devDependencies": {
     "babel-core": "^6.22.1",
@@ -42,7 +40,7 @@
     "standard": "^10.0.2",
     "style-loader": "^0.13.1",
     "url-loader": "^0.5.7",
-    "webpack": "^2.2.1"
+    "webpack": "^2.5.1"
   },
   "scripts": {
     "start": "nodemon --delay .5 app.js",

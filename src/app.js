@@ -18,7 +18,9 @@ injectTapEventPlugin();
 import {
   blue300,
   indigo900,
+  indigo200,
   orange200,
+  deepOrange100,
   deepOrange300,
   pink400,
   purple500,
@@ -27,6 +29,7 @@ import {
   teal500,
   lime100,
   transparent,
+  blueGrey50,
   pinkA200,
 } from 'material-ui/styles/colors'
 
@@ -63,7 +66,7 @@ export default class App extends React.Component {
 		)
 	}
 	changeStudentState(student) {
-		console.log(student)
+		// console.log(student)
 		const students = this.state.students.filter(function(el) {
 			if (el.s_id == student.s_id) {
 				el.attendance = !el.attendance
@@ -81,22 +84,29 @@ export default class App extends React.Component {
 }
 function StudentList(props) {
 	const studentList = props.students.map((student) =>
-		!student.attendance?<ListItem
+		!student.attendance?
+		<ListItem
 			// disabled={false}
 			// insetChildren={true}
 			leftAvatar={<Avatar
 				color={lightBlue500}
-        backgroundColor={transparent}
-        size={40}
-        style={style}>{student.s_id.toString().substring(2,4)}
-        </Avatar>
-      }
-      onTouchTap={props.onTouchTap.bind(this,student)}
-      key={student.s_id.toString()}
-      primaryText={student.name}
-      secondaryText={student.s_id}
-		/>:<ListItem
+		        backgroundColor={blueGrey50}
+		        size={40}
+		        style={style}>
+		        {student.s_id.toString().substring(2,4)}
+		        </Avatar>
+      		}
+			onTouchTap={props.onTouchTap.bind(this,student)}
+			key={student.s_id.toString()}
+			primaryText={student.name}
+			secondaryText={student.s_id}
+		/>:
+		<ListItem
 			leftIcon={<ActionFavorite color={pinkA200}/>}
+			rightAvatar={<Avatar 
+      	src={"img/pngs/avatar-0"+(student.s_id%9+1)+".png"} 
+      	backgroundColor={pinkA200}
+      	/>}
       onTouchTap={props.onTouchTap.bind(this,student)}
       key={student.s_id.toString()}
       primaryText={student.name}
