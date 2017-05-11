@@ -2,7 +2,11 @@
 @import url(https://fonts.googleapis.com/css?family=Roboto+Mono:400,500|Ubuntu);
 
 body {
-  /*background-color: #FBFFFE;*/
+  background-color: #FBFFFE;
   margin-top: 80px;
   font-family: 'Ubuntu', sans-serif;
+}
+.navbar-trans .navbar-brand, .navbar-trans >.container-fluid .navbar-brand {
+    padding: 14px;
+    color:#080010;
 }
