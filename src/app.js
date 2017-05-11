@@ -12,6 +12,9 @@ import Toggle from 'material-ui/Toggle';
 import ActionFavorite from 'material-ui/svg-icons/action/favorite';
 import ActionFavoriteBorder from 'material-ui/svg-icons/action/favorite-border';
 
+import groupBy from 'lodash/groupBy'
+import forEach from 'lodash/forEach'
+
 injectTapEventPlugin();
 
 
@@ -83,11 +86,46 @@ export default class App extends React.Component {
 	}
 }
 function StudentList(props) {
+	const groupStudentList = groupBy(props.students,(student)=>student.s_id.toString().substring(2,4))
+	const newList = []
+
+	forEach(groupStudentList,function(value,key){
+		const students = value.map((student) =>
+		!student.attendance?
+		<ListItem
+			leftAvatar={groupStudentList[key][0].s_id==student.s_id?<Avatar
+				color={lightBlue500}
+		        backgroundColor={blueGrey50}
+		        size={40}
+		        style={style}>
+		        {student.s_id.toString().substring(2,4)}
+		        </Avatar>:null
+      		}
+      insetChildren={true}
+			onTouchTap={props.onTouchTap.bind(this,student)}
+			key={student.s_id.toString()}
+			primaryText={student.name}
+			secondaryText={student.s_id}
+		/>:
+		<ListItem
+			leftIcon={<ActionFavorite color={pinkA200}/>}
+			rightAvatar={<Avatar 
+      	src={"img/pngs/avatar-0"+(student.s_id%9+1)+".png"} 
+      	backgroundColor={pinkA200}
+      	/>}
+      onTouchTap={props.onTouchTap.bind(this,student)}
+      key={student.s_id.toString()}
+      primaryText={student.name}
+      secondaryText={student.s_id}
+		/>
+	)
+		newList.push(<List key={key}><Divider inset={true}/>{students}</List>)
+	})
+
+
 	const studentList = props.students.map((student) =>
 		!student.attendance?
 		<ListItem
-			// disabled={false}
-			// insetChildren={true}
 			leftAvatar={<Avatar
 				color={lightBlue500}
 		        backgroundColor={blueGrey50}
@@ -113,10 +151,11 @@ function StudentList(props) {
       secondaryText={student.s_id}
 		/>
 	)
+	// console.log(studentList)
+	// console.log(newList)
 	return (
-		<List>
-		<Divider />
-		{studentList}
-		</List>
+		<div>
+		{newList}
+		</div>
 	)
 }
