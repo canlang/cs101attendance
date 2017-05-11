@@ -12903,7 +12903,7 @@ exports.default = App;
 function StudentList(props) {
 	var _this4 = this;
 
-	var noHeres = props.students.map(function (student) {
+	var studentList = props.students.map(function (student) {
 		return !student.attendance ? _react2.default.createElement(_List.ListItem
 		// disabled={false}
 		// insetChildren={true}
@@ -12915,49 +12915,24 @@ function StudentList(props) {
 					size: 40,
 					style: style },
 				student.s_id.toString().substring(2, 4)
-			)
-			//  rightCheckbox={<Checkbox
-			//    checkedIcon={<ActionFavorite />}
-			//    uncheckedIcon={<ActionFavoriteBorder />}
-			//    style={styles.checkbox}
-			//    onCheck={props.onTouchTap.bind(this,student)}
-			//  />
-			// }
-			, onTouchTap: props.onTouchTap.bind(_this4, student),
+			),
+			onTouchTap: props.onTouchTap.bind(_this4, student),
 			key: student.s_id.toString(),
 			primaryText: student.name,
 			secondaryText: student.s_id
-		}) : null;
-	}
-	// 	{student.s_id} {student.name}
-	// </ListItem>
-	);
-	var yesHeres = props.students.map(function (student) {
-		return student.attendance ? _react2.default.createElement(_List.ListItem, {
+		}) : _react2.default.createElement(_List.ListItem, {
 			leftIcon: _react2.default.createElement(_favorite2.default, { color: _colors.pinkA200 }),
 			onTouchTap: props.onTouchTap.bind(_this4, student),
 			key: student.s_id.toString(),
 			primaryText: student.name,
 			secondaryText: student.s_id
-		}) : null;
+		});
 	});
 	return _react2.default.createElement(
 		_List.List,
 		null,
-		_react2.default.createElement(
-			_Subheader2.default,
-			null,
-			'No here'
-		),
 		_react2.default.createElement(_Divider2.default, null),
-		noHeres,
-		_react2.default.createElement(
-			_Subheader2.default,
-			null,
-			'Yes here'
-		),
-		_react2.default.createElement(_Divider2.default, null),
-		yesHeres
+		studentList
 	);
 }
 

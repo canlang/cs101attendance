@@ -80,7 +80,7 @@ export default class App extends React.Component {
 	}
 }
 function StudentList(props) {
-	const noHeres = props.students.map((student) =>
+	const studentList = props.students.map((student) =>
 		!student.attendance?<ListItem
 			// disabled={false}
 			// insetChildren={true}
@@ -91,38 +91,22 @@ function StudentList(props) {
         style={style}>{student.s_id.toString().substring(2,4)}
         </Avatar>
       }
-     //  rightCheckbox={<Checkbox
-     //    checkedIcon={<ActionFavorite />}
-     //    uncheckedIcon={<ActionFavoriteBorder />}
-     //    style={styles.checkbox}
-     //    onCheck={props.onTouchTap.bind(this,student)}
-     //  />
-    	// }
       onTouchTap={props.onTouchTap.bind(this,student)}
       key={student.s_id.toString()}
       primaryText={student.name}
       secondaryText={student.s_id}
-		/>:null
-		// 	{student.s_id} {student.name}
-		// </ListItem>
-	)
-	const yesHeres = props.students.map((student) =>
-		student.attendance?<ListItem
+		/>:<ListItem
 			leftIcon={<ActionFavorite color={pinkA200}/>}
       onTouchTap={props.onTouchTap.bind(this,student)}
       key={student.s_id.toString()}
       primaryText={student.name}
       secondaryText={student.s_id}
-		/>:null
+		/>
 	)
 	return (
 		<List>
-		<Subheader>No here</Subheader>
 		<Divider />
-		{noHeres}
-		<Subheader>Yes here</Subheader>
-		<Divider />
-		{yesHeres}
+		{studentList}
 		</List>
 	)
 }
