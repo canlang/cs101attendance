@@ -93,14 +93,14 @@ function StudentList(props) {
 		const students = value.map((student) =>
 		!student.attendance?
 		<ListItem
-			leftAvatar={groupStudentList[key][0].s_id==student.s_id?<Avatar
-				color={lightBlue500}
-		        backgroundColor={blueGrey50}
-		        size={40}
-		        style={style}>
-		        {student.s_id.toString().substring(2,4)}
-		        </Avatar>:null
-      		}
+			// leftAvatar={groupStudentList[key][0].s_id==student.s_id?<Avatar
+			// 	color={lightBlue500}
+		 //        backgroundColor={transparent}
+		 //        size={40}
+		 //        style={style}>
+		 //        {student.s_id.toString().substring(2,4)}
+		 //        </Avatar>:null
+   //    		}
       insetChildren={true}
 			onTouchTap={props.onTouchTap.bind(this,student)}
 			key={student.s_id.toString()}
@@ -119,7 +119,13 @@ function StudentList(props) {
       secondaryText={student.s_id}
 		/>
 	)
-		newList.push(<List key={key}><Divider inset={true}/>{students}</List>)
+		newList.push(
+			<List key={key}>
+			<Divider inset={true}/>
+			<Subheader >{key} 학번</Subheader>
+			{students}
+			</List>
+			)
 	})
 
 
