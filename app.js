@@ -3,7 +3,7 @@ var app = express();
 var http = require('http').Server(app);
 var io = require('socket.io')(http);
 
-var data = require('./src/G.json')
+var data = require('./src/section_C.json')
 const students = data.map((student) =>
 		({"s_id":student.s_id,
 			"name":student.name,
